@@ -1,0 +1,73 @@
+<?php
+//$this->inlineScript()->appendFile($this->basePath('/js/data-table/jquery.dataTables.min.js'));
+//$this->inlineScript()->appendFile($this->basePath('/js/data-table/dataTables.bootstrap.js'));
+//$this->inlineScript()->appendFile($this->basePath('/js/data-table/init-posts.js'));
+//$this->headLink()->appendStylesheet($this->basePath('/js/data-table/dataTables.bootstrap.css'));
+$title = 'Articles List';
+$this->headTitle($title);
+?>
+
+<div class="page-header">
+	<div class="header">
+		<h1><?php echo $this->escapeHtml($title) ?></h1>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-12">
+		<div class="col-md-12" id="content">
+			
+
+						
+			<div class="panel panel-default object-panel">
+				<div class="panel-body">					
+					<a class="btn btn-default" href="<?php echo $this->url('tiny-blog', array('action'=>'add'));?>"><span>Add Post</span></a> 
+					<a class="btn btn-default" href="<?php echo $this->url('category', array('action' => 'index')) ?>"><span>Manage Categories</span></a>
+				</div>				
+				<div class="panel-body">																
+					<table class="table table-striped table-hover table-bordered" id="post-list">							
+						<thead>
+							<tr>
+								<th>Post Title</th>
+								<th>Categories</th>								
+								<th>Date Created</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+					<?php foreach ($posts as $post): ?>
+							<tr>
+								<td>
+									<a href="<?php echo $this->url('tiny-blog', array('action' => 'view', 'title' => $this->escapeHtml(strtolower(str_replace(' ', '-', $this->escapeHtml($post->title)))))); ?>">
+										<?php echo $this->escapeHtml($post->title); ?>
+									</a> 									
+								</td>
+<!--
+								<td><?php// echo substr($this->escapeHtml($post->content), 0, 10) ?> ...</td>
+-->								
+								<td>
+								<?php foreach ($post->getUserArticles() as $cat): ?>
+									 <span class=""><?php echo $cat->category->title; ?></span> -
+								<?php endforeach; ?>
+								</td>
+
+								<td><?php echo $post->postedAt; ?> </td>
+								
+								<td>
+									<a class="btn btn-default pull-right" href="<?php echo $this->url('tiny-blog', array(
+										'action' => 'delete', 'id' => $post->id)) ?>"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
+									</a> 
+									<a class="btn btn-default pull-right" href="<?php echo $this->url('tiny-blog', array(
+											'action' => 'edit', 'id' => $post->id)) ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 
+									</a>			
+								</td>
+							</tr>
+					<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

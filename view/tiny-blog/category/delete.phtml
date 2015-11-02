@@ -1,0 +1,29 @@
+<?php
+$title = 'Delete Category';
+$this->headTitle($title);
+?>
+
+<div class="page-header">
+  <h1><?php echo $this->escapeHtml($title) ?></h1>
+</div>
+<div class="row">	
+	<div class="col-xs-10 col-md-10 col-md-offset-1">
+		<div class="panel panel-default object-panel">
+			<div class="col-xs-12 col-md-12">
+				<br>
+				<p>Are you sure that you want to delete
+					<mark><?php echo $this->escapeHtml($category->title); ?></mark> 
+				</p>
+			</div>
+			<div class="panel-body" id="box">
+				<form action="<?php echo $this->url('category', array('action'=>'delete', 'id' => $category->id)); ?>" method="post">
+					<div>
+						<input type="hidden" name="id" value="<?php echo (int) $category->id; ?>" />
+						<input type="submit" name="del" value="Yes" />
+						<input type="submit" name="del" value="No" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
+</div>

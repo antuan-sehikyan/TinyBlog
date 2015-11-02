@@ -1,0 +1,38 @@
+<?php
+$this->headLink()->appendStylesheet($this->basePath('css/tinyblog.css')); 
+$title = 'Administration';
+$pageTitle = 'Delete Post';
+$this->headTitle($title);
+$form = $this->form;
+?>
+
+<div class="page-header">
+	<div class="header">
+		<h1><?php echo $this->escapeHtml($title) ?> : <?php echo $this->escapeHtml($pageTitle) ?></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">	
+		<div class="col-md-12" id="content">
+				
+			<div class="panel panel-default object-panel">
+				<div class="panel-body" id="box">				
+					<br>
+					<p>Are you sure that you want to delete
+						<mark><?php echo $this->escapeHtml($post->title); ?></mark> ?
+				<form id="del-form" action="<?php echo $this->url('tiny-blog', array('action'=>'delete', 'id' => $post->id)); ?>" method="post">
+					<div>
+						<input type="hidden" name="id" value="<?php echo (int) $post->id; ?>" />
+						<input type="submit" name="del" value="Yes" />
+						<input type="submit" name="del" value="No" />
+					</div>
+				</form>							
+					</p>
+				
+				</div>
+
+			</div>
+			
+		</div>
+	</div>	
+</div>
