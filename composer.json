@@ -1,5 +1,5 @@
 {
-    "name": "ledsinclouds/tiny-blog",
+    "name": "antuan-sehikyan/tiny-blog",
     "description": "This is a ZF2 Tiny Blog Module using Doctrine2 + CkEditor + Htmlpurifier Integration with Soflomo Module. ",
     "type": "library",
     "license": "BSD-3-Clause",
