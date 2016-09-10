@@ -43,7 +43,7 @@ class PostRepository extends EntityRepository{
 
         //return $result;
 	//}
-	
+
 	//public function findPostByStatusZero(){
         //$result = $this->createQueryBuilder('n')
 			//->where('n.status = 0')
@@ -52,18 +52,25 @@ class PostRepository extends EntityRepository{
 
         //return $result;
 	//}
-	
-	//public function getLatestPosts($limit){
 
-        //$result = $this->createQueryBuilder('n')
-			//->where('n.status = 1')
-		    //->setFirstResult(0)
-		    //->orderBy('n.postedAt', 'DESC')
-		    //->setMaxResults($limit)
-		    //->getQuery()->getResult();
+    public function findPosts(){
+        $result = $this->createQueryBuilder('n')
+            ->orderBy('n.postedAt', 'DESC')
+            ->getQuery()->getResult();
+        return $result;
+    }
 
-        //return $result;
-    //}
+	public function getLatestPosts($limit){
+
+        $result = $this->createQueryBuilder('n')
+			// ->where('n.status = 1')
+		    ->setFirstResult(0)
+		    ->orderBy('n.postedAt', 'DESC')
+		    ->setMaxResults($limit)
+		    ->getQuery()->getResult();
+
+        return $result;
+    }
 
     public function findPostByCategory($id){
 		$em = $this->getEntityManager();
